@@ -6,7 +6,7 @@ class MembersSerializer(serializers.Serializer):
     password = serializers.CharField(allow_null = True)
     
     def create(self, validated_data):
-        Members.objects.create(**validated_data)
+       return  Members.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
         instance.email = validated_data.get('email', instance.email)
