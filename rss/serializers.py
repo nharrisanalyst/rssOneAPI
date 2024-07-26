@@ -17,7 +17,7 @@ class RssFeedSerializer(serializers.ModelSerializer):
     class Meta:
         ordering =['-url']
         model = RssURL
-        fields = ('url','title', 'link', 'description')
+        fields = ('url','title', 'link', 'description','post')
 
 class RssURLSerializer(serializers.ModelSerializer):
     members = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
