@@ -26,6 +26,9 @@ class RssURLSerializer(serializers.ModelSerializer):
         model = RssURL
         fields = ('url', 'members')
     
+
+# class ModelRssSerializer(serializers.ModelSerializer):
+
         
 
 
