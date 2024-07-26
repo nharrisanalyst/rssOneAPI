@@ -2,6 +2,8 @@ from django.test import TestCase
 from rss.models import (RssURL, 
                         RssFeed, 
                         RssPost)
+from members.serializer import MembersSerializer
+from rss.serializers import (RssURLSerializer)
 from dateutil.parser import parse
 
 # Create your tests here.
@@ -72,7 +74,42 @@ class RssPostTestCase(TestCase):
 
             
         
+# Test for rss Serializer
+# 
+# 
+class RssURLSerializerTestCase(TestCase):
+    def setUp(self):
+        membersSerializer = MembersSerializer(data={'email':None, 'password':None})
+        if membersSerializer.is_valid():
+            self.member =membersSerializer.save()
+       
+        rssURL_data ={
+            'url':'http://example-rss.com/',
+            'members':[self.member],
+        }
+        self.serializerURL = RssURLSerializer(data=rssURL_data)
         
+        if self.serializerURL.is_valid():
+            self.rssURL= self.serializerURL.save()
+
+    def test_rss_url_ser(self):
+        data = self.serializerURL.data
+        
+        rss_ser_next = RssURLSerializer(self.rssURL)
+        self.assertEqual(set(data.keys()), set(['url', 'members']))
+    
+    def test_correct_members_added(self):
+        member_2_Serializer = MembersSerializer(data={'email':None, 'password':None})
+        if member_2_Serializer.is_valid():
+            self.member2 = member_2_Serializer.save()
+        
+        self.rssURL.members.add(self.member)
+        self.rssURL.members.add(self.member2)
+        self.assertEqual(len(self.rssURL.members.all()),2)
+
+
+        
+
 
 
 

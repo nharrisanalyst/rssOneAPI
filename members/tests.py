@@ -45,6 +45,6 @@ class MembersSerializerTestCase(TestCase):
 
     def test_contains_specif_fields(self):
         data = self.serializer_1.data
-        self.assertEqual(set(data.keys()), set(['email', 'password']))
+        self.assertEqual(set(data.keys()), set(['id', 'email', 'password']))
             
 

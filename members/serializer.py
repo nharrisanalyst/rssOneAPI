@@ -1,15 +1,12 @@
 from rest_framework import serializers
 from members.models import Members
-from rss.serializers import RssURLSerializer
 
-class MembersSerializer(serializers.Serializer):
+class MembersSerializer(serializers.ModelSerializer):
     email = serializers.CharField(allow_null = True)
     password = serializers.CharField(allow_null = True)
-    rssURLS = RssURLSerializer(many = True, read_only=True)
     
-    def create(self, validated_data):
-       return  Members.objects.create(**validated_data)
+    
+    class Meta:
+        model = Members
+        fields = ['id', 'email','password']
 
-    def update(self, instance, validated_data):
-        instance.email = validated_data.get('email', instance.email)
-        instance.password = validated_data.get('password', instance.password)

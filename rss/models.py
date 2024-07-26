@@ -6,7 +6,7 @@ from django.utils.timezone import now
 
 class RssURL(models.Model):
     url = models.URLField(max_length=2000, unique=True)
-    members = models.ManyToManyField(Members)
+    members = models.ManyToManyField(to=Members)
 
 
 class RssFeed(models.Model):
