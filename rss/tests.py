@@ -100,8 +100,8 @@ class RssURLSerializerTestCase(TestCase):
     def test_correct_members_added(self):
         member_2_Serializer = MembersSerializer(data={'email':None, 'password':None})
 
-        self.member.add(self.rssUrl)
-        self.assertEqual(len(self.memmber.rssURLs.all()),1)
+        self.member.rssURLs.add(self.rssURL)
+        self.assertEqual(len(self.member.rssURLs.all()),1)
 
 
         

@@ -4,6 +4,7 @@ from feedparser import parse
 
 class Post:
     def __init__(self):
+        pass
 
 
 class RssParser:
@@ -15,12 +16,10 @@ class RssParser:
         feed = parse(self.url)
         data = {
             'title':feed.feed.title,
-            'description':feed.feed.description
-            'link':feed.feed.link
+            'description':feed.feed.description,
+            'link':feed.feed.link,
             post:[]
         }
-
-        for
 
 
     
