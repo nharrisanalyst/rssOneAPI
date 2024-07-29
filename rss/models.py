@@ -1,12 +1,11 @@
 from django.db import models
-from members.models import Members
 from django.utils.timezone import now
 
 # Create your models here.
 
 class RssURL(models.Model):
     url = models.URLField(max_length=2000, unique=True)
-    members = models.ManyToManyField(to=Members)
+    
 
 
 class RssFeed(models.Model):
